@@ -27,17 +27,17 @@ SMPL 模型的 LBS 过程分为四个步骤：
 
 2. **形状混合 (Shape Blend)**  
    根据形状参数 $\beta$ 对模板网格进行线性形变：  
-$$ T_{shape} = \bar{T} + B_S(\beta) $$  
+   $$ T_{shape} = \bar{T} + B_S(\beta) $$  
    再由变形后的网格回归出关节位置：  
-$$ J(\beta) = \mathcal{J}(T_{shape}) $$
+   $$ J(\beta) = \mathcal{J}(T_{shape}) $$
 
 3. **姿态混合 (Pose Blend)**  
    根据姿态参数 $\theta$ 计算旋转矩阵，提取姿态特征 $R - I$，通过线性回归得到姿态偏移：  
-$$ T_P(\beta,\theta) = \bar{T} + B_S(\beta) + B_P(\theta) $$
+   $$ T_P(\beta,\theta) = \bar{T} + B_S(\beta) + B_P(\theta) $$
 
 4. **线性混合蒙皮 (LBS)**  
    对每个顶点，用其权重对各关节的全局刚体变换加权平均，得到最终变形后的顶点：  
-$$ v_i' = \sum_{k=1}^{K} w_{ik} \, G_k(\theta, J) \, \begin{bmatrix} v_i^{posed} \\ 1 \end{bmatrix} $$
+   $$ v_i' = \sum_{k=1}^{K} w_{ik} \, G_k(\theta, J) \, \begin{bmatrix} v_i^{posed} \\ 1 \end{bmatrix} $$
 
 ---
 
